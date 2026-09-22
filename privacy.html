@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Furina Bot — Privacy Policy</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #171a21;
+    --text: #e8e9ec;
+    --muted: #9aa0ab;
+    --accent: #6ea8ff;
+    --border: #262b35;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1115;
+      --panel: #171a21;
+      --text: #e8e9ec;
+      --muted: #9aa0ab;
+      --border: #262b35;
+    }
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f6f7f9;
+    --panel: #ffffff;
+    --text: #1c1f26;
+    --muted: #5b6270;
+    --border: #e4e6ea;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 20px 80px;
+  }
+
+  header {
+    margin-bottom: 32px;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 6px;
+  }
+
+  .updated {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .disclaimer {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 24px 0 32px;
+    font-size: 0.95rem;
+  }
+
+  section {
+    margin-bottom: 36px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    margin-top: 0;
+  }
+
+  ul {
+    padding-left: 22px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+    vertical-align: top;
+  }
+
+  th {
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .overflow {
+    overflow-x: auto;
+  }
+
+  footer {
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    margin-top: 48px;
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Furina — Privacy Policy</h1>
+    <div class="updated">Last updated: September 21, 2026</div>
+  </header>
+
+  <div class="disclaimer">
+    <strong>Independence notice:</strong> "Furina" is a fan-made Discord chat bot character, which is
+    not affiliated, endorsed, sponsored, or otherwise associated in any manner with HoYoverse,
+    Genshin Impact, or any of their related companies, trademarks, or properties. Any resemblance
+    of name or personality to existing characters is for entertainment purposes only.
+  </div>
+
+  <section id="overview">
+    <h2>Overview</h2>
+    <p>
+      This policy explains what information the Furina Discord bot processes, why, and where it
+      goes. Furina is a hobby project run by an individual, not a company, and does not sell or
+      monetize any data it processes. See also the
+      <a href="index.html">Terms of Service</a>.
+    </p>
+  </section>
+
+  <section id="collect">
+    <h2>What information is processed</h2>
+
+    <div class="overflow">
+      <table>
+        <tr>
+          <th>Data</th>
+          <th>Why</th>
+          <th>Stored long-term?</th>
+        </tr>
+
+        <tr>
+          <td>Text of recent messages in channels the bot can see</td>
+          <td>To decide whether to reply, and to generate a fitting in-character reply</td>
+          <td>No — kept in memory only while the bot is running, cleared on restart</td>
+        </tr>
+
+        <tr>
+          <td>Display names visible in those messages</td>
+          <td>Included as context so replies address the right person / conversation</td>
+          <td>No</td>
+        </tr>
+
+        <tr>
+          <td>Discord user or channel IDs</td>
+          <td>Technical necessity of using the Discord API (e.g. knowing where to reply)</td>
+          <td>No — not logged beyond normal runtime operation</td>
+        </tr>
+      </table>
+    </div>
+
+    <p>
+      Furina does not access messages in channels it hasn't been given permission to view, does
+      not read direct messages unless directly messaged, and does not collect emails, IPs, payment
+      information, or any data beyond what's described above.
+    </p>
+  </section>
+
+  <section id="thirdparty">
+    <h2>Third-party sharing</h2>
+
+    <p>
+      To generate replies, Furina sends a snippet of recent chat text to a third-party AI
+      inference provider (by default, Groq) for processing. This is the only third party that
+      receives message content.
+    </p>
+
+    <ul>
+      <li>
+        Groq processes the text to generate a response, which Furina then posts back to Discord.
+      </li>
+
+      <li>
+        Handling of that data on Groq's end is governed by Groq's own privacy policy and terms,
+        not by the bot owner.
+      </li>
+
+      <li>
+        No data is sold, shared with advertisers, or used for purposes unrelated to generating
+        the bot's replies.
+      </li>
+    </ul>
+  </section>
+
+  <section id="retention">
+    <h2>Data retention</h2>
+
+    <p>
+      Furina does not use a database and does not permanently log chat content. Recent messages
+      are held only in the bot's active memory to provide conversational context, and are lost
+      whenever the bot restarts. The bot owner does not manually review chat history beyond what's
+      needed to debug technical issues in the moment.
+    </p>
+  </section>
+
+  <section id="security">
+    <h2>Security</h2>
+
+    <p>
+      The bot's credentials (its Discord token and AI provider API key) are kept private and are
+      not exposed in the bot's code or outputs. As with any bot, message content passes over the
+      internet to Discord's and the AI provider's servers as part of normal operation.
+    </p>
+  </section>
+
+  <section id="children">
+    <h2>Children's privacy</h2>
+
+    <p>
+      Furina is not directed at children and does not knowingly collect data from users. Use of
+      Discord itself is subject to Discord's own age requirements and terms.
+    </p>
+  </section>
+
+  <section id="rights">
+    <h2>Your choices</h2>
+
+    <ul>
+      <li>
+        Server admins can remove Furina from a server at any time, which immediately stops it
+        from reading any further messages there.
+      </li>
+
+      <li>
+        Since no message content is stored beyond the bot's runtime memory, there is no
+        persistent personal data to request deletion of once the bot is removed or restarted.
+      </li>
+
+      <li>
+        You can avoid interacting with the bot by not messaging in channels it's active in, or
+        by asking a server admin to restrict which channels it can see.
+      </li>
+    </ul>
+  </section>
+
+  <section id="changes">
+    <h2>Changes to this policy</h2>
+
+    <p>
+      This policy may be updated as the bot's functionality changes (for example, if a database is
+      added for new features). Continued use of the bot after an update implies acceptance of the
+      current version of this policy.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+
+    <p>
+      For any questions, just ping me.
+    </p>
+  </section>
+
+  <footer>
+    Furina Discord bot — independent fan project. Not affiliated with HoYoverse or Genshin Impact.
+    I made this cuz discord needed it
+  </footer>
+
+</div>
+</body>
+</html>
+```
