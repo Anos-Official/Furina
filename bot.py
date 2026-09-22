@@ -202,7 +202,7 @@ def list_custom_emojis(guild):
     return lines
 
 
-GIF_TAG = re.compile(r"\[gif:\s*(.*?)\]", re.IGNORECASE)
+GIF_TAG = re.compile(r"\[gif\s*:\s*(.*?)\]", re.IGNORECASE)
 
 
 async def resolve_gifs(session, text):
@@ -223,17 +223,21 @@ async def resolve_gifs(session, text):
     return text.strip()
 
 
-def _first_media_url(media):
-    """Klipy nests format variants (gif/tinygif/mp4/webp/...) under 'media'; grab any usable url."""
-    if not isinstance(media, dict):
+def _first_media_url(file_data):
+    """Klipy nests format variants (gif/webp/jpg/mp4/webm) under a size tier
+    (hd/md/sm/...) inside 'file'; grab any usable url."""
+    if not isinstance(file_data, dict):
         return None
-    for key in ("gif", "tinygif", "webp", "mp4"):
-        entry = media.get(key)
-        if isinstance(entry, dict) and entry.get("url"):
-            return entry["url"]
-    for entry in media.values():
-        if isinstance(entry, dict) and entry.get("url"):
-            return entry["url"]
+    for size in file_data.values():
+        if not isinstance(size, dict):
+            continue
+        for fmt_key in ("gif", "webp", "mp4"):
+            entry = size.get(fmt_key)
+            if isinstance(entry, dict) and entry.get("url"):
+                return entry["url"]
+        for entry in size.values():
+            if isinstance(entry, dict) and entry.get("url"):
+                return entry["url"]
     return None
 
 
@@ -250,7 +254,7 @@ async def search_gif(session, query, key):
             if not items:
                 return None
             pick = random.choice(items)
-            return _first_media_url(pick.get("media"))
+            return _first_media_url(pick.get("file"))
     except Exception as e:
         print("[gif] Klipy error:", e)
         return None
@@ -287,6 +291,9 @@ async def ask_model(system, user):
                     data = await r.json()
                     text = (data["choices"][0]["message"].get("content") or "").strip()
                     if text:
+                        print(
+                            f"[{p['name']}] model output before gif resolve: {text!r}"
+                        )
                         return await resolve_gifs(session, text)
                     print(f"[{p['name']}] empty reply (raise max_tokens?)")
             except Exception as e:
@@ -339,6 +346,7 @@ async def on_message(message):
         async with message.channel.typing():
             prompt = build_prompt(message.channel.name, cid, direct, message.guild)
             reply = await ask_model(CHARACTER, prompt)
+        print(f"[{NAME}] raw reply: {reply!r}")
         if not reply or reply.strip().upper().startswith("SKIP"):
             return
 
