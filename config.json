@@ -1,31 +1,31 @@
 {
-  "character_name": "Furina",
+  "character_name": "CHARACTER NAME",
   "channel_ids": [],
   "context_messages": 15,
   "base_chance": 0.05,
   "question_bonus": 0.1,
   "min_message_length": 12,
-  "channel_cooldown_seconds": 300,
-  "check_cooldown_seconds": 8,
-  "direct_cooldown_seconds": 2,
+  "channel_cooldown_seconds": 900,
+  "check_cooldown_seconds": 60,
+  "direct_cooldown_seconds": 8,
   "daily_cap": 300,
   "reply_when_mentioned": true,
   "reply_style_chance": 0.6,
   "theme_chance": 0.5,
-  "delay_range_seconds": [3, 8],
+  "delay_range_seconds": [
+    3,
+    8
+  ],
   "temperature": 0.9,
   "max_tokens": 600,
   "max_chars": 400,
+  "gif_key_env": "KLIPY_API_KEY",
+  "max_custom_emojis_shown": 30,
+  "memory_cap": 10,
+  "memory_dir": "memory",
   "providers": [
     {
-      "name": "qwen",
-      "base_url": "https://api.groq.com/openai/v1",
-      "key_env": "GROQ_API_KEY",
-      "model": "qwen/qwen3.8-27b",
-      "extra_params": {}
-    },
-    {
-      "name": "gpt-oss-120b",
+      "name": "groq-primary",
       "base_url": "https://api.groq.com/openai/v1",
       "key_env": "GROQ_API_KEY",
       "model": "openai/gpt-oss-120b",
@@ -34,7 +34,7 @@
       }
     },
     {
-      "name": "gpt-oss-20b",
+      "name": "groq-fallback",
       "base_url": "https://api.groq.com/openai/v1",
       "key_env": "GROQ_API_KEY",
       "model": "openai/gpt-oss-20b",
